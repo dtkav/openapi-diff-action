@@ -13,6 +13,11 @@ inputs:
     description: "New specification filename"
     required: true
 
+outputs:
+  state:
+    description: "Output Diff Report"
+    value: ${{steps.output_markdown_report.outputs.content}}
+
 runs:
   using: composite
   steps:
@@ -21,4 +26,12 @@ runs:
         docker run -v "$(pwd):/specs" --rm openapitools/openapi-diff:2.0.1 \
           /specs/${{inputs.old-spec}} \
           /specs/${{inputs.new-spec}} \
+          --log ERROR \
+          --markdown /specs/report.md \
       shell: bash
+    - name: "Read Markdown report"
+      id: output_markdown_report
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: /specs/report.md
+
