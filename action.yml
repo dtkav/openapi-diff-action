@@ -14,7 +14,7 @@ inputs:
     required: true
 
 outputs:
-  state:
+  report:
     description: "Output Diff Report"
     value: ${{steps.output_markdown_report.outputs.content}}
 
