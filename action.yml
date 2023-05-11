@@ -27,11 +27,11 @@ runs:
           /specs/${{inputs.old-spec}} \
           /specs/${{inputs.new-spec}} \
           --log ERROR \
-          --markdown /specs/report.md \
+          --markdown /specs/report.md
       shell: bash
     - name: "Read Markdown report"
       id: output_markdown_report
       uses: juliangruber/read-file-action@v1
       with:
-        path: /specs/report.md
+        path: report.md
 
