@@ -26,7 +26,7 @@ runs:
         docker run -v "$(pwd):/specs" --rm openapitools/openapi-diff:2.0.1 \
           /specs/${{inputs.old-spec}} \
           /specs/${{inputs.new-spec}} \
-          --log ERROR > /specs/report.txt
+          --log ERROR | tee report.txt
       shell: bash
     - name: "Read Markdown report"
       id: output_markdown_report
