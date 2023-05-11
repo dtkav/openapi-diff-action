@@ -26,12 +26,11 @@ runs:
         docker run -v "$(pwd):/specs" --rm openapitools/openapi-diff:2.0.1 \
           /specs/${{inputs.old-spec}} \
           /specs/${{inputs.new-spec}} \
-          --log ERROR \
-          --markdown /specs/report.md
+          --log ERROR > /specs/report.txt
       shell: bash
     - name: "Read Markdown report"
       id: output_markdown_report
       uses: juliangruber/read-file-action@v1
       with:
-        path: report.md
+        path: report.txt
 
